@@ -272,12 +272,12 @@ resource "azurerm_virtual_network" "onprem-vnet" {
   name                = "onprem-vnet"
   resource_group_name = azurerm_resource_group.RG.name
   subnet {
-    address_prefix     = "10.0.0.0/24"
+    address_prefixes     = ["10.0.0.0/24"]
     name                 = "default"
     security_group = azurerm_network_security_group.onpremvnetNSG.id
   }
   subnet {
-    address_prefix     = "10.0.1.0/24"
+    address_prefixes     = ["10.0.1.0/24"]
     name                 = "GatewaySubnet" 
   }
   timeouts {
