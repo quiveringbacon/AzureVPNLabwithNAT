@@ -402,6 +402,7 @@ resource "azurerm_public_ip" "azurevpngw-pip" {
   resource_group_name = azurerm_resource_group.RG.name
   allocation_method = "Static"
   sku = "Standard"
+  zones = ["1", "2", "3"]
   timeouts {
     create = "2h"
     read = "2h"
@@ -416,6 +417,7 @@ resource "azurerm_public_ip" "onpremvpngw-pip" {
   resource_group_name = azurerm_resource_group.RG.name
   allocation_method = "Static"
   sku = "Standard"
+  zones = ["1", "2", "3"]
   timeouts {
     create = "2h"
     read = "2h"
@@ -470,7 +472,7 @@ resource "azurerm_virtual_network_gateway" "azurevpngw" {
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
   type     = "Vpn"
-  sku           = "VpnGw2"
+  sku           = "VpnGw2AZ"
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
@@ -528,7 +530,7 @@ resource "azurerm_virtual_network_gateway" "onpremvpngw" {
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
   type     = "Vpn"
-  sku           = "VpnGw1"
+  sku           = "VpnGw1AZ"
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
